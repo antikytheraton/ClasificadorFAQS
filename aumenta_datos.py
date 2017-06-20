@@ -1,9 +1,8 @@
-#Para probar puedes usar estos datos, te tiene que dar un vector de 24
-
+#Puedes probar con estso valores, y te debería de dar un vector de 24
 #frase = "Quiero ACCION un SUJETO COLOR"
 
 #acciones = ['comprar', 'vender']
-#sujetos = ['auto', 'helicóptero', 'monociclo']
+#sujetos = ['auto', 'helicóptero blindado', 'monociclo']
 #colores = ['azul', 'rojo', 'verde', 'morado']
 
 #valores = [acciones, sujetos, colores]
@@ -18,8 +17,15 @@ def aumentar_data_set(frase, huecos, valores):
             try:
                 index = list_aux.index(huecos[i])
                 for valor in valores[i]:
-                    list_aux[index] = valor
-                    resultado.append(list(list_aux))
+                    if (' ' in valor) == True:
+                        list_aux_original = list(list_aux)
+                        list_aux[index:index + len(valor.split(' '))] = valor.split(' ')
+                        resultado.append(list(list_aux))
+                        list_aux = list(list_aux_original)
+
+                    else:
+                        list_aux[index] = valor
+                        resultado.append(list(list_aux))
             except:
                 resultado.append(list(list_aux))
                 continue
@@ -30,8 +36,14 @@ def aumentar_data_set(frase, huecos, valores):
                 try:
                     index = list_aux[j].index(huecos[i])
                     for valor in valores[i]:
-                        list_aux[j][index] = valor
-                        resultado.append(list(list_aux[j]))
+                        if (' ' in valor) == True:
+                            list_aux_original = list(list_aux[j])
+                            list_aux[j][index:index + (len(valor.split(' '))-1)] = valor.split(' ')
+                            resultado.append(list(list_aux[j]))
+                            list_aux[j] = list_aux_original
+                        else:
+                            list_aux[j][index] = valor
+                            resultado.append(list(list_aux[j]))
                 except:
                     resultado.extend(list(list_aux))
                     break

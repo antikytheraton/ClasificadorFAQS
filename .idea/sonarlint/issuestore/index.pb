@@ -17,3 +17,9 @@ D
 aumenta_datos.py,2/4/24a2f7a8869860af1b24ff8086db3a12be12cbca
 N
 generacion_dataset_con_tags.py,4/c/4c0a20b32c1e35c5daf33f15cf8d5185c6aaaa25
+<
+lista2str.py,6/c/6c28ee2c4818bbf64d06b08d4ecebac9644efe89
+F
+aumentar_datos_tags.py,e/b/ebdffd4d14d2df39ad11609a8d4e1786a888d62e
+I
+aumenta_datos_mejorado.py,b/d/bdd4f33ddcac35afb6236b96cd552779a646beca
