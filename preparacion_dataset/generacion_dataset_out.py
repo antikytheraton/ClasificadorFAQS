@@ -1,6 +1,7 @@
 """Clase que te ayuda a 'inflar' tu dataset"""
-from aumenta_datos import aumentar_data_set
 import unicodedata
+
+from preparacion_dataset.aumenta_datos import aumentar_data_set
 
 
 def elimina_tildes(s):
