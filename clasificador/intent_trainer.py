@@ -1,6 +1,6 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_selection import SelectPercentile, f_classif
-from sklearn import cross_validation
+from sklearn import model_selection
 from sklearn.externals import joblib
 from sklearn import svm
 from sklearn.metrics import accuracy_score
@@ -9,27 +9,26 @@ from sklearn.metrics import accuracy_score
 def preprocess(X,y):
     ### test_size is the percentage of events assigned to the test set
     ### (remainder go into training)
-    features_train, features_test, labels_train, labels_test = cross_validation.train_test_split(X, y, test_size=0.2, random_state=42)
+    features_train, features_test, labels_train, labels_test = model_selection.train_test_split(X, y, test_size=0.2, random_state=42)
 
 
    ### text vectorization--go from strings to lists of numbers
-    vectorizer = TfidfVectorizer(sublinear_tf=True, max_df=0.5,
-                                     stop_words='english')
+    vectorizer = TfidfVectorizer(sublinear_tf=True, max_df=0.5, stop_words='english')
     features_train_transformed = vectorizer.fit_transform(features_train)
     features_test_transformed  = vectorizer.transform(features_test)
-    joblib.dump(vectorizer, 'vectorizer.pkl')
+    joblib.dump(vectorizer, 'vectorizer_intent.pkl')
 
    ### feature selection, because text is super high dimensional and
     ### can be really computationally chewy as a result
     selector = SelectPercentile(f_classif, percentile=10)
     selector.fit(features_train_transformed, labels_train)
-    joblib.dump(selector, 'selector.pkl')
+    joblib.dump(selector, 'selector_intent.pkl')
     features_train_transformed = selector.transform(features_train_transformed).toarray()
     features_test_transformed  = selector.transform(features_test_transformed).toarray()
     return features_train_transformed, features_test_transformed, labels_train, labels_test
 
 
-with open("training.txt") as f:
+with open("../preparacion_dataset/data_final_inflado_intencion.txt") as f:
     content = f.readlines()
 content = [x.strip() for x in content]
 def cleanPhrase(phrase):
@@ -43,9 +42,10 @@ from sklearn.ensemble import RandomForestClassifier
 rfc = RandomForestClassifier(n_estimators=30).fit(features_train, labels_train)
 print("Random forest acc: "+str(accuracy_score(labels_test, rfc.predict(features_test))))
 
-new_phrase="bot pon una de AUTOR"
-vect=joblib.load("vectorizer.pkl")
-select=joblib.load('selector.pkl')
+new_phrase="que es dinero"
+
+vect=joblib.load("vectorizer_intent.pkl")
+select=joblib.load('selector_intent.pkl')
 features_transformed  = vect.transform([new_phrase])
 features = select.transform(features_transformed).toarray()
 print(lin_svc.predict(features))

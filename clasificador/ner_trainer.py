@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.feature_extraction import DictVectorizer
 from sklearn.externals import joblib
-from sklearn import cross_validation, svm
+from sklearn import svm, model_selection
 from sklearn.metrics import accuracy_score
 
 df=pd.read_csv("../preparacion_dataset/data_final_inflado_tag.csv")
@@ -29,13 +29,16 @@ def prepara_frase(tags,words):
 features,targets=prepara_frase(tags,words)
 vectorizer = DictVectorizer(sparse=False)
 vectorizer.fit(features)
-joblib.dump(vectorizer, 'vectorizer.pkl')
+joblib.dump(vectorizer, 'vectorizer_entity.pkl')
 
 
 transformed=vectorizer.transform(features)
-X_train, X_test, y_train, y_test = cross_validation.train_test_split(transformed, targets, test_size=0.1, random_state=42)
+#X_train, X_test, y_train, y_test = cross_validation.train_test_split(transformed, targets, test_size=0.1, random_state=42) #Se intenta quitar por deprecated warning
+X_train, X_test, y_train, y_test = model_selection.train_test_split(transformed, targets, test_size=0.1, random_state=42)
+
+
 lin_svc = svm.LinearSVC(C=1).fit(X_train, y_train)
 
 print(len(X_test))
 print(accuracy_score(y_test, lin_svc.predict(X_test)))
-joblib.dump(lin_svc, 'clasifier.pkl')
+joblib.dump(lin_svc, 'clasifier_entity.pkl')

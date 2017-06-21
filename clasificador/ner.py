@@ -25,8 +25,8 @@ def prepara_frase(words):
     return features
 
 def getNer(frase):
-    hash_path = "vectorizer.pkl"
-    clf_path = "clasifier.pkl"
+    hash_path = "vectorizer_entity.pkl"
+    clf_path = "clasifier_entity.pkl"
     clf = joblib.load(clf_path)
     vectorizer=joblib.load(hash_path)
     lista=frase2lista(frase)
@@ -35,5 +35,5 @@ def getNer(frase):
     clases=clf.predict(features)
     return lista,clases
 
-entities=getNer("¿Cómo consigo dinero?")
+entities=getNer("¿Cómo consigo dinero express?")
 print(entities)
