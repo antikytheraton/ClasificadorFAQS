@@ -35,5 +35,5 @@ def getNer(frase):
     clases=clf.predict(features)
     return lista,clases
 
-entities=getNer("¿Cómo consigo dinero express?")
+entities=getNer("como hago para ganar dinero")
 print(entities)
