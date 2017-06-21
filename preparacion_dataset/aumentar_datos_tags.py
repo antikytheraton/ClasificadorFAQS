@@ -1,22 +1,24 @@
-#Para probar puedes usar estos datos, te tiene que dar un vector de 8
+#Para probar puedes usar estos datos, te tiene que dar un vector de 18
 
-#frase = "Quiero ACCION un SUJETO COLOR"
+# topicos = ['pollo cocido', 'dinero']
+# acciones = ['enviar', 'recibir', 'comprar']
+# unes = ['un', 'una', 'unos cuantos']
+# valores = [topicos, acciones, unes]
+#
+# huecos = ['TOPICO', 'ACCION', 'UN']
+#
+# title_tags = ['tpc', 'acc', 'uns']
+#
+# frase="Como le hago para ACCION UN TOPICO nuevo"
 
-#acciones = ['comprar', 'vender']
-#sujetos = ['auto', 'helicóptero blindado']
-#colores = ['azul', 'rojo']
-
-#valores = [acciones, sujetos, colores]
-#huecos = ['ACCION', 'SUJETO', 'COLOR']
-#tags=['acc', 'suj', 'clr']
-
-def aumentar_dataset_con_tags(frase, huecos, valores, tags):
+def aumentar_data_set_tags(frase, huecos, valores, tags):
     list_frase = frase.split(' ')
     resultado = []
     resultado_tags = []
 
     list_aux = list(list_frase)
     list_aux_tags = list('*'*len(list_aux))
+
     for i in range(len(huecos)):
         if i == 0:
             try:
@@ -24,17 +26,17 @@ def aumentar_dataset_con_tags(frase, huecos, valores, tags):
                 for valor in valores[i]:
                     if (' ' in valor) == True:
                         list_aux_original = list(list_aux)
-                        list_aux[index:index + len(valor.split(' '))] = valor.split(' ')
+                        del list_aux[index]
+                        list_aux = list_aux[:index]+valor.split(' ')+list_aux[index:]
                         resultado.append(list(list_aux))
                         list_aux = list(list_aux_original)
 
-                        for k in range(len(valor.split(' '))):
-                            if k == 0:
-                                list_aux_tags = list_aux_tags[:index] + [tags[i]] + list_aux_tags[index + 1:]
-                            else:
-                                list_aux_tags = list_aux_tags[:index] + [tags[i]] + list_aux_tags[index:]
-
+                        list_aux_tags_original = list(list_aux_tags)
+                        for index_palabra_oracion in range(len(valor.split(' '))):
+                            list_aux_tags = list_aux_tags[:index] + [tags[i]] + list_aux_tags[index:]
+                        del list_aux_tags[(index + len(valor.split(' '))):(index + len(valor.split(' ')) * 2-1)]
                         resultado_tags.append(list(list_aux_tags))
+                        list_aux_tags = list(list_aux_tags_original)
 
                     else:
                         list_aux[index] = valor
@@ -59,17 +61,17 @@ def aumentar_dataset_con_tags(frase, huecos, valores, tags):
                     for valor in valores[i]:
                         if (' ' in valor) == True:
                             list_aux_original = list(list_aux[j])
-                            list_aux[j][index:index + (len(valor.split(' '))-1)] = valor.split(' ')
+                            del list_aux[j][index]
+                            list_aux[j] = list_aux[j][:index] + valor.split(' ') + list_aux[j][index:]
                             resultado.append(list(list_aux[j]))
                             list_aux[j] = list_aux_original
 
-                            for k in range(len(valor.split(' '))):
-                                if k == 0:
-                                    list_aux_tags[j] = list_aux_tags[j][:index] + [tags[i]] + list_aux_tags[j][index + 1:]
-                                else:
-                                    list_aux_tags[j] = list_aux_tags[j][:index] + [tags[i]] + list_aux_tags[j][index:]
-
+                            list_aux_tags_original = list(list_aux_tags[j])
+                            for index_palabra_oracion in range(len(valor.split(' '))):
+                                list_aux_tags[j] = list_aux_tags[j][:index] + [tags[i]] + list_aux_tags[j][index:]
+                            del list_aux_tags[j][(index + len(valor.split(' '))):(index + len(valor.split(' ')) * 2-1)]
                             resultado_tags.append(list(list_aux_tags[j]))
+                            list_aux_tags[j] = list(list_aux_tags_original)
                         else:
                             list_aux[j][index] = valor
                             resultado.append(list(list_aux[j]))
@@ -82,8 +84,8 @@ def aumentar_dataset_con_tags(frase, huecos, valores, tags):
                     break
     return resultado, resultado_tags
 
-#print(aumentar_data_set(frase, huecos, valores, tags)[0])
-#print(len(aumentar_data_set(frase, huecos, valores, tags)[0]))
-
-#print(aumentar_data_set(frase, huecos, valores, tags)[1])
-#print(len(aumentar_data_set(frase, huecos, valores, tags)[1]))
+# print(aumentar_data_set_tags(frase, huecos, valores, title_tags)[0])
+# print(len(aumentar_data_set_tags(frase, huecos, valores, title_tags)[0]))
+#
+# print(aumentar_data_set_tags(frase, huecos, valores, title_tags)[1])
+# print(len(aumentar_data_set_tags(frase, huecos, valores, title_tags)[1]))

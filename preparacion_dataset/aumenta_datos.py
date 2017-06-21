@@ -1,12 +1,12 @@
 #Puedes probar con estso valores, y te debería de dar un vector de 24
-#frase = "Quiero ACCION un SUJETO COLOR"
-
-#acciones = ['comprar', 'vender']
-#sujetos = ['auto', 'helicóptero blindado', 'monociclo']
-#colores = ['azul', 'rojo', 'verde', 'morado']
-
-#valores = [acciones, sujetos, colores]
-#huecos = ['ACCION', 'SUJETO', 'COLOR']
+# frase = "Quiero ACCION un SUJETO COLOR nuevo"
+#
+# acciones = ['comprar rapido', 'vender']
+# sujetos = ['auto veloz', 'helicóptero blindado', 'monociclo']
+# colores = ['azul', 'rojo', 'verde', 'morado']
+#
+# valores = [acciones, sujetos, colores]
+# huecos = ['ACCION', 'SUJETO', 'COLOR']
 
 def aumentar_data_set(frase, huecos, valores):
     list_frase = frase.split(' ')
@@ -19,7 +19,8 @@ def aumentar_data_set(frase, huecos, valores):
                 for valor in valores[i]:
                     if (' ' in valor) == True:
                         list_aux_original = list(list_aux)
-                        list_aux[index:index + len(valor.split(' '))] = valor.split(' ')
+                        del list_aux[index]
+                        list_aux = list_aux[:index]+valor.split(' ')+list_aux[index:]
                         resultado.append(list(list_aux))
                         list_aux = list(list_aux_original)
 
@@ -38,7 +39,8 @@ def aumentar_data_set(frase, huecos, valores):
                     for valor in valores[i]:
                         if (' ' in valor) == True:
                             list_aux_original = list(list_aux[j])
-                            list_aux[j][index:index + (len(valor.split(' '))-1)] = valor.split(' ')
+                            del list_aux[j][index]
+                            list_aux[j] = list_aux[j][:index] + valor.split(' ') + list_aux[j][index:]
                             resultado.append(list(list_aux[j]))
                             list_aux[j] = list_aux_original
                         else:
@@ -49,5 +51,5 @@ def aumentar_data_set(frase, huecos, valores):
                     break
     return resultado
 
-#print(aumentar_data_set(frase, huecos, valores))
-#print(len(aumentar_data_set(frase, huecos, valores)))
+# print(aumentar_data_set(frase, huecos, valores))
+# print(len(aumentar_data_set(frase, huecos, valores)))

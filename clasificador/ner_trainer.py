@@ -4,7 +4,7 @@ from sklearn.externals import joblib
 from sklearn import cross_validation, svm
 from sklearn.metrics import accuracy_score
 
-df=pd.read_csv("final_data.csv")
+df=pd.read_csv("../preparacion_dataset/data_final_inflado_tag.csv")
 tags=df['tags'].tolist()[1:]
 words=df['words'].tolist()[1:]
 
@@ -14,11 +14,13 @@ def prepara_frase(tags,words):
     targets=[]
     for ind,tag in enumerate(tags):
         if tag!='-':
-            feature['0']=words[ind-2]
-            feature['1']=words[ind-1]
-            feature['2']=words[ind]
-            feature['3']=words[ind+1]
-            feature['4']=words[ind+2]
+            feature['0']=words[ind-3]
+            feature['1']=words[ind-2]
+            feature['2']=words[ind-1]
+            feature['3']=words[ind]
+            feature['4']=words[ind+1]
+            feature['5']=words[ind+2]
+            feature['6']=words[ind+3]
             features.append(feature)
             feature={}
             targets.append(tag)
