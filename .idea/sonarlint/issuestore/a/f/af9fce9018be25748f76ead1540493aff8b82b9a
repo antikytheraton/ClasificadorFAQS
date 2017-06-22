@@ -1,5 +1,10 @@
 
-;python:S125"Remove this commented out code.(Ë«•Ç8ƒ¼ß¿Ì+
-opython:S3776"RRefactor this method to reduce its Cognitive Complexity from 58 to the 15 allowed.(Ñøê8¯´¼Ì+
-~python:S134"]Refactor this code to not nest more than 4 "if", "for", "while", "try" and "with" statements.(İ‰ï®ùÿÿÿÿ8¯´¼Ì+
-ypython:S134"]Refactor this code to not nest more than 4 "if", "for", "while", "try" and "with" statements.(éİ†¼8¯´¼Ì+
+Bpython:S1110" Remove those useless parentheses(‘áÇûÿÿÿÿ8ŠúµáÌ+
+<python:S1110" Remove those useless parentheses(ƒÚªr8ŠúµáÌ+
+~python:S134"]Refactor this code to not nest more than 4 "if", "for", "while", "try" and "with" statements.(İ‰ï®ùÿÿÿÿ8ŠúµáÌ+
+@python:S125"Remove this commented out code.(Ÿ¨§úÿÿÿÿ8âÈ¿áÌ+
+ypython:S134"]Refactor this code to not nest more than 4 "if", "for", "while", "try" and "with" statements.(éİ†¼8ŠúµáÌ+
+;python:S125"Remove this commented out code.(ºş¤8àõ¿áÌ+
+<python:S1110" Remove those useless parentheses(ƒÚªr8ŠúµáÌ+
+opython:S3776"RRefactor this method to reduce its Cognitive Complexity from 43 to the 15 allowed.(¬ï² 8ŠúµáÌ+
+Bpython:S1110" Remove those useless parentheses(‘áÇûÿÿÿÿ8ŠúµáÌ+

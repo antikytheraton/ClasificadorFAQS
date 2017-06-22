@@ -1,7 +1,5 @@
 
 npython:S3776"RRefactor this method to reduce its Cognitive Complexity from 32 to the 15 allowed.(éŒ¸C8 ÿ³Ì+
+;python:S125"Remove this commented out code.(àì€¥8ÂºšŞÌ+
 ypython:S134"]Refactor this code to not nest more than 4 "if", "for", "while", "try" and "with" statements.(éİ†¼8ˆÆÃµÌ+
 ~python:S134"]Refactor this code to not nest more than 4 "if", "for", "while", "try" and "with" statements.(İ‰ï®ùÿÿÿÿ8 ÿ³Ì+
-;python:S125"Remove this commented out code.(ÿí¨ã8…ûÛ¸Ì+
-@python:S125"Remove this commented out code.(¦§ı„üÿÿÿÿ8…ûÛ¸Ì+
-;python:S125"Remove this commented out code.(àì€¥8ÔÒİ¸Ì+

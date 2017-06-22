@@ -1,8 +1,8 @@
-¿Cuál es la definición de TOPICO?0
-¿Qué es TOPICO?0
-¿Cómo hago para ACCION?1
-¿Cómo hago para ACCION TOPICO?1
-¿Cómo hago para ACCION UN TOPICO?1
-¿Cómo le hago para ACCION?1
-¿Cómo le hago para ACCION TOPICO?1
-¿Cómo le hago para ACCION UN TOPICO?1
+0 ¿Cuál es la definición de TOPICO?
+0 ¿Qué es TOPICO?
+1 ¿Cómo hago para ACCION?
+1 ¿Cómo hago para ACCION TOPICO?
+1 ¿Cómo hago para ACCION UN TOPICO?
+1 ¿Cómo le hago para ACCION?
+1 ¿Cómo le hago para ACCION TOPICO?
+1 ¿Cómo le hago para ACCION UN TOPICO?

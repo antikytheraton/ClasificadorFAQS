@@ -24,8 +24,15 @@ huecos = ['TOPICO', 'ACCION', 'UN']
 
 title_tags = ['tpc', 'acc', 'uns']
 
+# autores = ['Manuel', 'jose jose','lupita dalessio', 'chaplin', 'roman', 'christina', 'gerardo', 'linkin park', "jose jose","green day","muse","queen","eric clapton","maluma","tame impala","vicente fernandez","joan sebastian"]
+# valores = [autores]
+# huecos = ['AUTOR']
+#
+# title_tags = ['ar']
+
 frases = []
 numeros_intencion = []
+
 res_frases = []
 res_tags = []
 #En este caso las frases a inflar las sacamos de un archivo txt
@@ -35,8 +42,8 @@ for linea in file.readlines():
     frase = linea
     frase = frase.replace('?', '').replace('¿', '').replace('\n', '')
     frase = elimina_tildes(frase)
-    numero_intencion = frase[-1]#Se extrae el número de intención
-    frase_sin_numero = frase[0:(len(frase) - 1)]#Se quita el número de intención
+    numero_intencion = frase[0]#Se extrae el número de intención
+    frase_sin_numero = frase[2:]#Se quita el número de intención
     frases.append(list(aumentar_data_set(frase_sin_numero, huecos, valores)))
     numeros_intencion.append(numero_intencion*len(aumentar_data_set(frase_sin_numero, huecos, valores)))
 
@@ -53,7 +60,7 @@ index_numeros_intencion=0
 for oraciones in frases:
     for palabra in oraciones:
         oracion = " ".join(str(x) for x in palabra)
-        file.write(oracion+numeros_intencion[index_numeros_intencion])
+        file.write(numeros_intencion[index_numeros_intencion]+' '+oracion)
         file.write('\n')
         index_numeros_intencion+=1
 file.close()
@@ -62,6 +69,7 @@ file.close()
 #Se ponen los tags y las frases dentro de sus listas correspondientes, para bajarlas a una sola dimensión
 lista_frases_unida = []
 lista_tags_unida = []
+
 for frase_base in res_frases:
     for oraciones in frase_base:
         lista_frases_unida.extend(['-', '-', '-']+oraciones+['-', '-', '-'])

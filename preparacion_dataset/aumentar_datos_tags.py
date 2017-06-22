@@ -11,6 +11,8 @@
 #
 # frase="Como le hago para ACCION UN TOPICO nuevo"
 
+#TODO Modificar el algoritmo para que acepte palabras con más de un espacio
+
 def aumentar_data_set_tags(frase, huecos, valores, tags):
     list_frase = frase.split(' ')
     resultado = []
